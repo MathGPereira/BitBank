@@ -1,1 +1,4 @@
-node_modules
+#firstLine
+/node_modules
+*.txt
+*.xlsx
