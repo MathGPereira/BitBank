@@ -36,6 +36,6 @@ const cartaoSchema = new mongoose.Schema(
 	},
 	{ versionKey: false }
 );
-const contas = mongoose.model('contas', contaSchema);
+const cartoes = mongoose.model('cartoes', cartaoSchema);
 
-export default contas;
+export default cartoes;
