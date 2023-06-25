@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const clienteSchema = new mongoose.Schema(
 	{
 		id: {
-			type: String
+			type: String,
+			unique: true
 		},
 		nome: {
 			type: String,
@@ -15,29 +16,36 @@ const clienteSchema = new mongoose.Schema(
 		},
 		rg: {
 			type: String,
-			required: true
+			required: true,
+			unique: true
 		},
 		cpf: {
 			type: String,
-			required: true
+			required: true,
+			unique: true
 		},
-		enderecoId: {
-			type: String,
-			required: true
+		endereco: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'enderecos'
 		},
-		contatoId: {
-			type: String,
-			required: true
+		conta: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'contas'
 		},
 		foto: {
 			type: String,
+			default: 'cliente.png'
+		},
+		role: {
+			type: String,
+			default: 'usuario'
 		},
 		criadoEm: {
-			type: Date,
+			type: String,
 			required: true
 		},
 		atualizadoEm: {
-			type: Date,
+			type: String,
 			required: true
 		}
 	},

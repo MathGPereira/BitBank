@@ -26,7 +26,8 @@ const contaSchema = new mongoose.Schema(
 			required: true
 		},
 		transacoes: {
-			type: String,
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'transacoes',
 			required: true
 		},
 		criadoEm: {

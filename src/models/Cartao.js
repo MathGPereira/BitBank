@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const cartaoSchema = new mongoose.Schema(
 	{
 		id: {
-			type: String
+			type: String,
+			unique: true
 		},
 		numero: {
 			type: String,
