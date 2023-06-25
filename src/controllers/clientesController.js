@@ -3,7 +3,7 @@ import clientes from '../models/Cliente.js';
 class ClienteController {
 
 	static trocarNome = async (req, res) => {
-		// Trocar nome cadastrado no BD
+		res.status(200).send({ message: 'Nome trocado com sucesso!' });
 	}
 
 	static trocarSobrenome = async (req, res) => {

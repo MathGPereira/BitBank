@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb+srv://matheusgpestudos:M123456Aa!@#@cluster0.m2jd9dr.mongodb.net/Cluster0');
+mongoose.connect('mongodb+srv://matheusgpestudos:GTVSyCc0BKmrxPSp@bitbank.q6abo5p.mongodb.net/BitBank');
 
-const db = mongoose.conection;
+const db = mongoose.connection;
 
 export default db;
+
+// GTVSyCc0BKmrxPSp
