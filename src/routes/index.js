@@ -1,6 +1,5 @@
 import express from 'express';
 import clientes from './clientesRoutes.js';
-import bancos from './bancosRoutes.js';
 
 const routes = app => {
 	app.get('/', (req, res) => {
@@ -9,8 +8,7 @@ const routes = app => {
 
 	app.use(
 		express.json(),
-		clientes,
-		bancos
+		clientes
 	);
 };
 
