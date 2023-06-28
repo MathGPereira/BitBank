@@ -5,11 +5,6 @@ const enderecoSchema = new mongoose.Schema(
 		id: {
 			type: String
 		},
-		cliente: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'clientes',
-			required: true
-		},
 		cep: {
 			type: String,
 			required: true

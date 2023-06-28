@@ -61,6 +61,10 @@ class ClienteController {
 			res.status(500).send({ erro: erro.message });
 		}
 	}
+
+	static atualizarCliente = async (id, teste) => {
+		await clientes.findByIdAndUpdate(teste, { endereco: id }, { new: true });
+	}
 }
 
 export default ClienteController;

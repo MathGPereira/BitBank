@@ -28,6 +28,10 @@ const clienteSchema = new mongoose.Schema(
 			required: true,
 			unique: true
 		},
+		endereco: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'enderecos'
+		},
 		foto: {
 			type: String,
 			default: 'cliente.png'

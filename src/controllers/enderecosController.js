@@ -1,4 +1,5 @@
 import enderecos from '../models/Endereco.js';
+import ClienteController from '../controllers/clientesController.js';
 
 class EnderecoController {
 
@@ -38,6 +39,8 @@ class EnderecoController {
 
 		try {
 			await endereco.save();
+			EnderecoController.#atualizaEnderecoDoCliente(endereco._id);
+
 			res.status(201).send({ mensagem: "Endereco cadastrado com sucesso!" });
 		}catch(erro) {
 			res.status(400).send({ erro: erro.message });
@@ -64,6 +67,11 @@ class EnderecoController {
 		}catch(erro) {
 			res.status(400).send({ erro: erro.message });
 		}
+	}
+
+	static #atualizaEnderecoDoCliente = async (id) => {
+		const teste = "649b6f0581224b280f344376";
+		await ClienteController.atualizarCliente(id, teste);
 	}
 }
 
