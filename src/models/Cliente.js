@@ -32,6 +32,10 @@ const clienteSchema = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'enderecos'
 		},
+		cartao: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'cartoes'
+		},
 		foto: {
 			type: String,
 			default: 'cliente.png'

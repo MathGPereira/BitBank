@@ -4,7 +4,7 @@ class ClienteController {
 
 	static listarClientes = async (req, res) => {
 		try {
-			const listaDeClientes = await clientes.find();
+			const listaDeClientes = await clientes.find().populate('cartao').populate('endereco').exec();
 			res.status(200).json(listaDeClientes);
 		}catch(erro) {
 			res.status(400).send({ erro: erro.message });
@@ -64,6 +64,10 @@ class ClienteController {
 
 	static atualizarCliente = async (id, teste) => {
 		await clientes.findByIdAndUpdate(teste, { endereco: id }, { new: true });
+	}
+
+	static atualizarCartaoCliente = async (id, teste) => {
+		await clientes.findByIdAndUpdate(teste, { cartao: id }, { new: true });
 	}
 }
 

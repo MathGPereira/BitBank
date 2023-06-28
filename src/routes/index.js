@@ -1,6 +1,7 @@
 import express from 'express';
 import clientes from './clientesRoutes.js';
 import enderecos from './enderecosRoutes.js';
+import cartoes from './cartoesRoutes.js';
 
 const routes = app => {
 	app.get('/', (req, res) => {
@@ -10,7 +11,8 @@ const routes = app => {
 	app.use(
 		express.json(),
 		clientes,
-		enderecos
+		enderecos,
+		cartoes
 	);
 };
 

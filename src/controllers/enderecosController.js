@@ -40,7 +40,6 @@ class EnderecoController {
 		try {
 			await endereco.save();
 			EnderecoController.#atualizaEnderecoDoCliente(endereco._id);
-
 			res.status(201).send({ mensagem: "Endereco cadastrado com sucesso!" });
 		}catch(erro) {
 			res.status(400).send({ erro: erro.message });
