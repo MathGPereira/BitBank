@@ -1,5 +1,5 @@
 import express from 'express';
-import clientes from './clientes.routes.js';
+import clients from './clients.routes.js';
 
 const routes = app => {
 	app.route('/').get((req, res) => {
@@ -8,7 +8,7 @@ const routes = app => {
 
 	app.use(
 		express.json(),
-		clientes
+		clients
 	);
 }
 
