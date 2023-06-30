@@ -1,35 +1,52 @@
 import clients from '../models/Client.js';
+import NotFoundError from '../errors/Not-found.errors.js';
 
 class ClientsController { 
 
-	static listCustomers = async (req, res) => {
+	static listCustomers = async (req, res, next) => {
 		try {
 			const clientsList = await clients.find();
 			res.status(200).json(clientsList);
 		}catch(error) {
-			res.status(500).send({ error: `${error.message} - There was a server failure` });
+			next(error);
 		}
 	}
 
-	static registerCustomer = async (req, res) => {
-		const client = ClientsController.#insertDates(req.body);
+	static listCustomerById = async (req, res, next) => {
+		const { id } = req.params;
+
+		try {
+			const clientById = await clients.findById(id);
+
+			if(clientById) {
+				res.status(200).json(clientById);
+			}else {
+				next(new NotFoundError('Customer not found!'));
+			}
+		}catch(error) {
+			next(error);
+		}
+	}
+
+	static registerCustomer = async (req, res, next) => {
+		const client = new clients(req.body);
 	
 		try {
 			await client.save();
 			res.status(201).send({ message: 'Successfully registered customer!' });
 		}catch(error) {
-			res.status(500).send({ error: `${error.message} - There was a server failure` });
+			next(error);
 		}
 	}
 
-	static deleteCustomer = async (req, res) => {
+	static deleteCustomer = async (req, res, next) => {
 		const { id } = req.params;
 
 		try {
 			await clients.findByIdAndDelete(id);
 			res.status(200).send({ message: 'Successfully deleted customer!' });
 		}catch(error) {
-			res.status(500).send({ error: `${error.message} - There was a server failure!` });
+			next(error);
 		}
 	}
 
@@ -40,15 +57,8 @@ class ClientsController {
 			await clients.findByIdAndUpdate(id, req.body, { new: true });
 			res.status(200).send({ message: 'Successfully updated customer!' });
 		}catch(error) {
-			res.status(500).send({ error: `${error.message} - There was a server failure!` });
+			next(error);
 		}
-	}
-
-	static #insertDates = ({ ...informations }) => {
-		informations.createdAt = new Date();
-		informations.updatedAt = new Date();
-
-		return new clients(informations);
 	}
 }
 

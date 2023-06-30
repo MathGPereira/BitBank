@@ -7,21 +7,21 @@ const clientSchema = mongoose.Schema(
 		},
 		name: {
 			type: String,
-			required: [true, 'This field is required!']
+			required: [true, 'Customer name is required!']
 		},
 		surname: {
 			type: String,
-			required: [true, 'This field is required!']
+			required: [true, 'Customer surname is required!']
 		},
 		rg: {
 			type: String,
-			required: [true, 'This field is required'],
-			unique: [true, 'This field need to be unique!']
+			required: [true, 'Customer RG is required!'],
+			unique: true
 		},
 		cpf: {
 			type: String,
-			required: [true, 'This field is required'],
-			unique: [true, 'This field need to be unique!']
+			required: [true, 'Customer CPF is required!'],
+			unique: true
 		},
 		addressId: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -29,7 +29,7 @@ const clientSchema = mongoose.Schema(
 		},
 		accountId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'account'
+			ref: 'accounts'
 		},
 		picture: {
 			type: String,
@@ -37,11 +37,15 @@ const clientSchema = mongoose.Schema(
 		},
 		createdAt: {
 			type: Date,
-			required: [true, 'This field is required!']
+			default: () => {
+				return new Date();
+			}
 		},
 		updatedAt: {
 			type: Date,
-			required: [true, 'This field is required!']
+			default: () => {
+				return new Date();
+			}
 		}
 	},
 	{ versionKey: false }
