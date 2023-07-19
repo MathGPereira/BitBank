@@ -1,61 +1,91 @@
-import clients from '../models/Client.js';
-import NotFoundError from '../errors/Not-found.errors.js';
+import clients from '../models/clients.model.js';
+import PasswordCriptography from '../cryptographys/password.cryptography.js';
 
-class ClientsController { 
+class ClientsController {
 
-	static listCustomers = async (req, res, next) => {
+	static async listCustomers(req, res, next) {
 		try {
-			const clientsList = await clients.find();
-			res.status(200).json(clientsList);
+			const customersList = await clients
+				.find()
+				.select(
+					{
+						_id: 0, id: 0,
+						password: 0,
+						salt: 0,
+						createdAt: 0,
+						updatedAt: 0,
+						accountId : 0
+					}
+				)
+				.populate('address', 
+					{ 
+						_id: 0, id: 0,
+						createdAt: 0,
+						updatedAt: 0,
+					}
+				)
+				.populate('account',
+					{
+						_id: 0, id: 0,
+						createdAt: 0,
+						updatedAt: 0
+					}
+				)
+				.exec()
+			;
+
+			res.status(200).json(customersList);
 		}catch(error) {
 			next(error);
 		}
 	}
 
-	static listCustomerById = async (req, res, next) => {
-		const { id } = req.params;
-
+	static async createCustomer(req, res, next) {
 		try {
-			const clientById = await clients.findById(id);
+			const { password } = req.body;
+			const client = new clients(req.body);
+			const encryptedPassword = new PasswordCriptography().encrypt(password);
 
-			if(clientById) {
-				res.status(200).json(clientById);
-			}else {
-				next(new NotFoundError('Customer not found!'));
+			client.password = encryptedPassword.hash;
+			client.salt = encryptedPassword.salt;
+
+			await client.save()
+
+			res.status(201).json({ message: 'Successfully registered customer!' });
+		}catch(error) {
+			next(error);
+		}
+	}
+
+	static async updateCustomer(req, res, next) {
+		try {
+			const { cpf, email } = req.headers;
+			req.body.updatedAt = new Date();
+
+			if(cpf) {
+				await clients.findOneAndUpdate({ cpf: cpf }, req.body, { new: true });
+			}else if(email) {
+				await clients.findOneAndUpdate({ email: email }, req.body, { new: true });
+			}
+
+			if(!req.body.addressId || !req.body.accountId) {
+				res.status(200).json({ message: 'Successfully updated customer!' });
 			}
 		}catch(error) {
 			next(error);
 		}
 	}
 
-	static registerCustomer = async (req, res, next) => {
-		const client = new clients(req.body);
-	
+	static async deleteCustomer(req, res, next) {
 		try {
-			await client.save();
-			res.status(201).send({ message: 'Successfully registered customer!' });
-		}catch(error) {
-			next(error);
-		}
-	}
+			const { cpf, email } = req.headers;
 
-	static deleteCustomer = async (req, res, next) => {
-		const { id } = req.params;
-
-		try {
-			await clients.findByIdAndDelete(id);
-			res.status(200).send({ message: 'Successfully deleted customer!' });
-		}catch(error) {
-			next(error);
-		}
-	}
-
-	static updateCustomer = async (req, res) => {
-		const { id } = req.params;
-
-		try {
-			await clients.findByIdAndUpdate(id, req.body, { new: true });
-			res.status(200).send({ message: 'Successfully updated customer!' });
+			if(cpf) {
+				await clients.findOneAndDelete({ cpf: cpf });
+			}else if(email) {
+				await clients.findOneAndDelete({ email: email });
+			}
+			res.status(200).json({ message: 'Successfully updated customer!' });
 		}catch(error) {
 			next(error);
 		}
