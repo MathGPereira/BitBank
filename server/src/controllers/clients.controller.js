@@ -33,7 +33,7 @@ class ClientsController {
 				)
 				.exec()
 			;
-
+			
 			res.status(200).json(customersList);
 		}catch(error) {
 			next(error);
