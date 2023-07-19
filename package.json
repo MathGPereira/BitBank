@@ -2,7 +2,9 @@
   "name": "public",
   "version": "0.0.0",
   "scripts": {
-    "start": "concurrently \"nodemon ./server/server.js\" \"ng serve\""
+    "start": "concurrently \"nodemon ./server/server.js\" \"ng serve\"",
+    "start:web": "ng serve",
+    "start:api": "nodemon ./server/server.js"
   },
   "type": "module",
   "private": true,
