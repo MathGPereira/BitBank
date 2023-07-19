@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb+srv://matheusgpestudos:GTVSyCc0BKmrxPSp@bitbank.q6abo5p.mongodb.net/BitBank');
+mongoose.connect(process.env.STRING_CONNECTION);
 
 const mongo = mongoose.connection;
 
