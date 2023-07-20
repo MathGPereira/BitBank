@@ -1,5 +1,7 @@
 # BitBank
-Aqui irão imagens do projeto
+![Login page](./src/assets/images/reference/login-page.png)
+![Main page](./src/assets/images/reference/payments.png)
+![Light mode](./src/assets/images/reference/light-mode.png)
 
 ## Sumário
 1. [About](#about)
