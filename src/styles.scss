@@ -1,1 +1,8 @@
-@import "./app/core/sass/base/reset";
+@import './app/core/sass/base/reset';
+@import './app/core/sass/abstract/variables';
+
+body {
+  font-size: $font-size;
+  font-family: $font-family;
+  font-weight: $font-weight;
+}
