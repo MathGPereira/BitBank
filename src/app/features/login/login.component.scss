@@ -79,9 +79,12 @@ main {
       align-items: center;
       display: flex;
       justify-content: center;
+      margin-left: 2rem;
       p {
         color: $dark-mode-blue;
         cursor: pointer;
+        font-size: 20px;
+        padding-left: 4rem;
         transition: color .3s linear;
         &:hover {
           color: $dark-mode-blue-alt;
