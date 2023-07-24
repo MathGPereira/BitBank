@@ -9,40 +9,24 @@
     id="login-form"
     >
     <h1>Login</h1>
-    <fieldset
-      name="cpf-form"
-      form="login-form"
+    <bank-inputs-login
+      fieldset_name="cpf-form"
+      type="text"
+      autocapitalize="on"
+      autocomplete="on"
+      name="cpf"
+      placeholder="Enter your CPF"
       >
-      <input 
-        type="text"
-        mozactionhint="next"
-        autocapitalize="none"
-        autocomplete="on"
-        autocorrect="on"
-        form="login-form"
-        inputmode="verbatim"
-        name="cpf"
-        placeholder="Enter your CPF"
+    </bank-inputs-login>
+    <bank-inputs-login
+      fieldset_name="password-form"
+      type="password"
+      autocapitalize="off"
+      autocomplete="off"
+      name="password"
+      placeholder="Password"
       >
-    </fieldset>
-    <fieldset
-      name="password-form"
-      form="login-form"
-      class="fieldset-password"
-      >
-      <input 
-        type="password"
-        mozactionhint="send"
-        autocapitalize="none"
-        autocomplete="off"
-        autocorrect="off"
-        form="login-form"
-        inputmode="verbatim"
-        name="password"
-        placeholder="Password"
-      >
-      <p id="forgot-password">Forgot your password?</p>
-    </fieldset>
+    </bank-inputs-login>
     <fieldset
       name="buttons-form"
       form="login-form"

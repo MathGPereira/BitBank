@@ -1,0 +1,20 @@
+<fieldset
+  form="login-form"
+  [name]="fieldset_name"
+  >
+  <input 
+    form="login-form"
+    inputmode="verbatim"
+    [type]="type"
+    [autocapitalize]="autocapitalize"
+    [autocomplete]="autocomplete"
+    [name]="input_name"
+    [placeholder]="placeholder"
+  >
+  <p 
+    id="forgot-password"
+    *ngIf="fieldset_name === 'password-form'"
+    >
+    Forgot your password?
+  </p>
+</fieldset>
