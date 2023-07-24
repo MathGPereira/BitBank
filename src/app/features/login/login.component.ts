@@ -1,8 +1,12 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bank-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent { }
+export class LoginComponent {
+
+  constructor(private router: Router) { }
+}
