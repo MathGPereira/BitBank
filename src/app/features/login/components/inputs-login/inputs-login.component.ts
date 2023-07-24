@@ -6,12 +6,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./inputs-login.component.scss']
 })
 export class InputsLoginComponent {
-  @Input() fieldset_name!: String
-  @Input() type!: String
-  @Input() mozactionhint!: String
-  @Input() autocapitalize!: String
-  @Input() autocomplete!: String
-  @Input() autocorrect!: String
-  @Input() input_name!: String
-  @Input() placeholder!: String
+  @Input() fieldset_name!: string;
+  @Input() type!: string;
+  @Input() mozactionhint!: string;
+  @Input() autocapitalize!: string;
+  @Input() autocomplete!: string;
+  @Input() autocorrect!: string;
+  @Input() input_name!: string;
+  @Input() placeholder!: string;
 }
