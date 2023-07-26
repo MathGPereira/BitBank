@@ -8,10 +8,10 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const permission = false;
 
   if(permission) {
-    router.navigate(['/home']);
+    router.navigate(['home']);
     return true;
   } else {
-    router.navigate(['/login']);
+    router.navigate(['login']);
     return false;
   }
 };

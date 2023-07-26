@@ -8,10 +8,10 @@ import { Component, Input } from '@angular/core';
 export class InputsLoginComponent {
   @Input() fieldset_name!: string;
   @Input() type!: string;
-  @Input() mozactionhint!: string;
   @Input() autocapitalize!: string;
   @Input() autocomplete!: string;
-  @Input() autocorrect!: string;
   @Input() input_name!: string;
   @Input() placeholder!: string;
+  @Input() minlength!: string;
+  @Input() maxlength!: string;
 }
